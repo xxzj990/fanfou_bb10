@@ -4,27 +4,37 @@
 <context>
     <name>Login</name>
     <message>
-        <location filename="../assets/Login.qml" line="9"/>
+        <location filename="../assets/Login.qml" line="11"/>
         <source>登录/注册</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="66"/>
+        <location filename="../assets/Login.qml" line="35"/>
+        <source>登录失败</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Login.qml" line="84"/>
         <source>用户名或邮箱</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="73"/>
+        <location filename="../assets/Login.qml" line="91"/>
         <source>密码</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="83"/>
+        <location filename="../assets/Login.qml" line="108"/>
         <source>登录</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="120"/>
+        <location filename="../assets/Login.qml" line="50"/>
+        <source>请输入用户名和密码</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../assets/Login.qml" line="132"/>
         <source>登录成功</source>
         <translation type="unfinished"></translation>
     </message>

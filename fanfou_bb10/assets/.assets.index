@@ -1,7 +1,8 @@
 1
-35
+36
 About.qml
 AtMe.qml
+controls/LoadingActivity.qml
 DirectMe.qml
 images/fanfou.png
 images/ic_compose.png

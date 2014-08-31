@@ -1,23 +1,24 @@
 import bb.cascades 1.3
 import bb.system 1.2
 import QtQuick 1.0
+import "controls"
 
 Page {
     id: loginPage
     objectName: "loginPage"
     titleBar: TitleBar {
+        id: title
         title: qsTr("登录/注册") + Retranslate.onLocaleOrLanguageChanged
     }
 
     // when c++ login OK,call this method
     function loginSuccess(msg) {
         console.log("login success result:" + msg)
-        
+
         // Stop loading
-        if (logining.running) {
-            logining.stop()
-        }
-        
+        progressIndicator.active = false
+        progressIndicator.visible = false
+
         // Show success toast
         loginSuccessToast.show()
     }
@@ -25,36 +26,53 @@ Page {
     // when c++ login failed,call this method
     function loginFailed(msg) {
         console.log("login failed result:" + msg)
-        
+
         // Stop loading
-        if (logining.running) {
-            logining.stop()
-        }
-        
+        progressIndicator.active = false
+        progressIndicator.visible = false
+
         // Show toast
-        showToast("登录失败")
+        showToast(qsTr("登录失败"))
     }
-    
+
     // Show toast
     function showToast(msg) {
-        toast.body = qsTr(msg)
+        toast.body = msg
         toast.show()
     }
-    
+
+    // Login action
+    function loginReq() {
+        // Verify input
+        var nametext = username.text.trim()
+        var pwdtext = password.text.trim()
+        if (nametext == "" || pwdtext == "") {
+            showToast(qsTr("请输入用户名和密码"))
+            return
+        }
+
+        console.log("login with username=" + nametext + ";password=" + pwdtext)
+
+        // Show loading
+        progressIndicator.active = true
+        progressIndicator.visible = true
+
+        // Login
+        _fanfou.login()
+    }
+
     Component.onCompleted: {
         // Connect c++ with js
         _fanfou.loginSuccess.connect(loginSuccess)
         _fanfou.loginFailed.connect(loginFailed)
     }
-    
+
     Container {
         layout: DockLayout {
-
         }
 
         Container {
             layout: StackLayout {
-
             }
 
             Divider {
@@ -74,8 +92,15 @@ Page {
                 horizontalAlignment: HorizontalAlignment.Center
                 topMargin: ui.du(2)
                 inputMode: TextFieldInputMode.Password
-                input.submitKey: SubmitKey.EnterKey
                 verticalAlignment: VerticalAlignment.Center
+
+                input {
+                    submitKey: SubmitKey.EnterKey
+                    onSubmitted: {
+                        loginReq()
+                    }
+                }
+
             }
 
             Button {
@@ -85,30 +110,17 @@ Page {
                 topMargin: ui.du(5)
 
                 onClicked: {
-                    // Verify input
-                    if(username.text == "" || password.text == "") {
-                        showToast("请输入用户名和密码")
-                        return
-                    }
-                    
-                    // Show loading
-                    if (!logining.running) {
-                        logining.start()
-                    }
-                    
-                    // Login
-                    _fanfou.login()
+                    loginReq()
                 }
             }
         }
-        
-        ActivityIndicator {
-            id: logining
-            accessibility.name: "loading"
-            verticalAlignment: VerticalAlignment.Center
-            horizontalAlignment: HorizontalAlignment.Center
-            preferredWidth: ui.du(10)
-            preferredHeight: ui.du(10)
+
+        LoadingActivity {
+            id: progressIndicator
+            active: false
+            visible: false
+            verticalAlignment: VerticalAlignment.Fill
+            horizontalAlignment: HorizontalAlignment.Fill
         }
 
         attachedObjects: [
@@ -121,7 +133,7 @@ Page {
                 onFinished: {
                     // Close login page
                     homePane.pop()
-                    
+
                     // Remove login action
                     if (_fanfou.isLogin()) {
                         homePane.removeLoginAction()

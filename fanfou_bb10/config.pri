@@ -45,6 +45,7 @@ config_pri_assets {
         $$quote($$BASEDIR/assets/Search.qml) \
         $$quote($$BASEDIR/assets/Settings.qml) \
         $$quote($$BASEDIR/assets/Timeline.qml) \
+        $$quote($$BASEDIR/assets/controls/LoadingActivity.qml) \
         $$quote($$BASEDIR/assets/images/fanfou.png) \
         $$quote($$BASEDIR/assets/images/ic_compose.png) \
         $$quote($$BASEDIR/assets/images/ic_contact.png) \
@@ -127,6 +128,9 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../assets/720x720/images/*.qml) \
         $$quote($$BASEDIR/../assets/720x720/images/*.js) \
         $$quote($$BASEDIR/../assets/720x720/images/*.qs) \
+        $$quote($$BASEDIR/../assets/controls/*.qml) \
+        $$quote($$BASEDIR/../assets/controls/*.js) \
+        $$quote($$BASEDIR/../assets/controls/*.qs) \
         $$quote($$BASEDIR/../assets/images/*.qml) \
         $$quote($$BASEDIR/../assets/images/*.js) \
         $$quote($$BASEDIR/../assets/images/*.qs)
