@@ -49,7 +49,7 @@ ApplicationUI::ApplicationUI() :
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 
     // Exposing C++ objects to QML
-    Fanfou *fanfou = new Fanfou();
+    Fanfou *fanfou = new Fanfou(this);
     fanfou->logout();
     qml->setContextProperty("_fanfou", fanfou);
 

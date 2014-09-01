@@ -81,6 +81,7 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/main.cpp) \
         $$quote($$BASEDIR/src/model/timeline.cpp) \
         $$quote($$BASEDIR/src/utils/AppSettings.cpp) \
+        $$quote($$BASEDIR/src/utils/Networker.cpp) \
         $$quote($$BASEDIR/src/utils/const.cpp) \
         $$quote($$BASEDIR/src/utils/log.cpp)
 
@@ -89,6 +90,7 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/fanfou/Fanfou.h) \
         $$quote($$BASEDIR/src/model/timeline.h) \
         $$quote($$BASEDIR/src/utils/AppSettings.h) \
+        $$quote($$BASEDIR/src/utils/Networker.h) \
         $$quote($$BASEDIR/src/utils/const.h) \
         $$quote($$BASEDIR/src/utils/log.h)
 }

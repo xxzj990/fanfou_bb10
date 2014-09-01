@@ -10,6 +10,8 @@
 
 #include <QObject>
 #include <QString>
+#include <QNetworkReply>
+#include <src/utils/Networker.h>
 
 class Fanfou : public QObject
 {
@@ -19,15 +21,18 @@ Q_SIGNALS:
     void loginSuccess(QString msg);
     void loginFailed(QString msg);
 
+private Q_SLOTS:
+    void onGetReply(QNetworkReply *reply);
+
 public:
+    Fanfou(QObject* parent = 0);
     virtual ~Fanfou();
-    Fanfou();
 
     Q_INVOKABLE bool isLogin();
     Q_INVOKABLE void login();
     Q_INVOKABLE void logout();
 
-
+    NetWorker *netWorker;
 };
 
 #endif /* FANFOU_H_ */

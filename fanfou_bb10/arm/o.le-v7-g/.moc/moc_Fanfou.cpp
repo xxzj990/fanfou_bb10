@@ -22,7 +22,7 @@ static const uint qt_meta_data_Fanfou[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -33,18 +33,22 @@ static const uint qt_meta_data_Fanfou[] = {
       12,    8,    7,    7, 0x05,
       34,    8,    7,    7, 0x05,
 
+ // slots: signature, parameters, type, tag, flags
+      61,   55,    7,    7, 0x08,
+
  // methods: signature, parameters, type, tag, flags
-      60,    7,   55,    7, 0x02,
-      70,    7,    7,    7, 0x02,
-      78,    7,    7,    7, 0x02,
+      93,    7,   88,    7, 0x02,
+     103,    7,    7,    7, 0x02,
+     111,    7,    7,    7, 0x02,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_Fanfou[] = {
     "Fanfou\0\0msg\0loginSuccess(QString)\0"
-    "loginFailed(QString)\0bool\0isLogin()\0"
-    "login()\0logout()\0"
+    "loginFailed(QString)\0reply\0"
+    "onGetReply(QNetworkReply*)\0bool\0"
+    "isLogin()\0login()\0logout()\0"
 };
 
 void Fanfou::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -55,10 +59,11 @@ void Fanfou::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->loginSuccess((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->loginFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: { bool _r = _t->isLogin();
+        case 2: _t->onGetReply((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 3: { bool _r = _t->isLogin();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 3: _t->login(); break;
-        case 4: _t->logout(); break;
+        case 4: _t->login(); break;
+        case 5: _t->logout(); break;
         default: ;
         }
     }
@@ -96,9 +101,9 @@ int Fanfou::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
