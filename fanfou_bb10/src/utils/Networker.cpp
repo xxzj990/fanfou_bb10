@@ -5,10 +5,11 @@
  *      Author: liulei
  */
 
+#include "Networker.h"
+
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
-#include "Networker.h"
 
 /**
  * @brief The NetWorker::Private class 内部辅助类

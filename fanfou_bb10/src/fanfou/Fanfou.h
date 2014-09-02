@@ -8,10 +8,9 @@
 #ifndef FANFOU_H_
 #define FANFOU_H_
 
-#include <QObject>
-#include <QString>
-#include <QNetworkReply>
 #include <src/utils/Networker.h>
+#include <QObject>
+#include <QNetworkReply>
 
 class Fanfou : public QObject
 {

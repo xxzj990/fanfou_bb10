@@ -5,8 +5,9 @@
  *      Author: liulei
  */
 
-#include <src/utils/AppSettings.h>
-#include <src/utils/const.h>
+#include "AppSettings.h"
+#include "const.h"
+
 #include <QString>
 #include <QSettings>
 

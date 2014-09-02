@@ -5,18 +5,19 @@
  *      Author: liulei
  */
 
-#include <src/fanfou/Fanfou.h>
+#include "Fanfou.h"
+
 #include <src/utils/AppSettings.h>
 #include <src/utils/log.h>
-#include <src/utils/Networker.h>
+#include <src/utils/HMACSha1Signature.h>
 #include <bb/cascades/QmlDocument>
 #include <QNetworkRequest>
-#include <QNetworkReply>
 #include <QByteArray>
 #include <QDebug>
 #include <QNetworkAccessManager>
 #include <QSslConfiguration>
 #include <QUrl>
+#include <QString>
 
 Fanfou::~Fanfou()
 {
@@ -38,7 +39,12 @@ void Fanfou::login()
 {
     AppSettings::setAsLogined();
 
-    netWorker->get("http://www.baidu.com");
+    HMACSha1Signature signer;
+    QString result = signer.getSignature("http://api.fanfou.com", "dscadcadacsdcadscasd", "vasdrafaw3easddscasdc");
+
+    qDebug() << result;
+
+    netWorker->get("http://api.fanfou.com/statuses/public_timeline.json");
 }
 
 void Fanfou::logout()
@@ -57,8 +63,9 @@ void Fanfou::onGetReply(QNetworkReply *reply)
                 response = QString::fromUtf8(buffer);
             }
         } else {
-            response = "Error";
+            response = "Error:" + reply->errorString();
             qDebug() << response;
+            qDebug() << "Code:" << reply->error();
         }
 
         reply->deleteLater();
