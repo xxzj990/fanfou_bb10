@@ -21,17 +21,27 @@ Q_SIGNALS:
     void loginFailed(QString msg);
 
 private Q_SLOTS:
-    void onGetReply(QNetworkReply *reply);
+    void onLoginResult(QNetworkReply *reply);
 
 public:
     Fanfou(QObject* parent = 0);
     virtual ~Fanfou();
 
     Q_INVOKABLE bool isLogin();
-    Q_INVOKABLE void login();
+    Q_INVOKABLE void login(QString username, QString password);
     Q_INVOKABLE void logout();
+    Q_INVOKABLE void setAsLogined();
 
     NetWorker *netWorker;
+
+private:
+
+    /**
+     * 解析请求返回
+     *
+     * 返回空证明请求未成功
+     */
+    QString getResultString(QNetworkReply *reply);
 };
 
 #endif /* FANFOU_H_ */

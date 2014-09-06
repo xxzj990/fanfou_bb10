@@ -14,7 +14,6 @@
 #include <bb/cascades/QmlDocument>
 #include <QNetworkRequest>
 #include <QByteArray>
-#include <QDebug>
 #include <QNetworkAccessManager>
 #include <QSslConfiguration>
 #include <QUrl>
@@ -28,7 +27,6 @@ Fanfou::Fanfou(QObject* parent) :
         QObject(parent)
 {
     netWorker = NetWorker::instance();
-    connect(netWorker, SIGNAL(finished(QNetworkReply*)), this, SLOT(onGetReply(QNetworkReply*)));
 }
 
 bool Fanfou::isLogin()
@@ -36,13 +34,21 @@ bool Fanfou::isLogin()
     return AppSettings::isLogined();
 }
 
-void Fanfou::login()
+void Fanfou::login(QString username, QString password)
 {
-    AppSettings::setAsLogined();
+    if(username.isEmpty() || password.isEmpty()) {
+        Log::d("login request username or password is empty.");
+        return;
+    }
+
+    QString msg = "login with username: ";
+    msg.append(username).append(";password: ").append(password);
+    Log::d(msg);
 
     OAuth10aService service;
-    MyNetworkRequest request = service.getTokenRequest("xxzj990@gmail.com", "wersdf");
+    MyNetworkRequest request = service.getTokenRequest(username, password);
 
+    connect(netWorker, SIGNAL(finished(QNetworkReply*)), this, SLOT(onLoginResult(QNetworkReply*)));
     netWorker->doSend(request);
 }
 
@@ -51,9 +57,13 @@ void Fanfou::logout()
     AppSettings::removeLogin();
 }
 
-void Fanfou::onGetReply(QNetworkReply *reply)
+void Fanfou::setAsLogined()
 {
-    QString response;
+    AppSettings::setAsLogined();
+}
+
+QString Fanfou::getResultString(QNetworkReply *reply) {
+    QString response = "";
     if (reply) {
         if (reply->error() == QNetworkReply::NoError) {
             const int available = reply->bytesAvailable();
@@ -62,17 +72,37 @@ void Fanfou::onGetReply(QNetworkReply *reply)
                 response = QString::fromUtf8(buffer);
             }
         } else {
-            response = "Error:" + reply->errorString();
-            qDebug() << response;
-            qDebug() << "Code:" << reply->error();
+            QString error;
+            error.append("Code:").append(QString::number(reply->error())).append(";Message:").append(reply->errorString());
+            Log::d(error);
         }
 
         reply->deleteLater();
     }
 
     if (response.trimmed().isEmpty()) {
-        response = "Unable to retrieve post response";
+        response = "";
     }
-    Log::d("Login process finish.");
-    emit loginSuccess(response);
+    return response;
+}
+
+void Fanfou::onLoginResult(QNetworkReply *reply)
+{
+    disconnect(netWorker, SIGNAL(finished(QNetworkReply*)), this, SLOT(onLoginResult(QNetworkReply*)));
+
+    QString response = getResultString(reply);
+
+    Log::d("login response:" + response);
+
+    if(response.isEmpty()) {
+        emit loginFailed("error");
+    } else {
+        emit loginSuccess(response);
+
+        // 储存token
+
+        // 获取用户信息
+
+    }
+
 }

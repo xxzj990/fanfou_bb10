@@ -9,32 +9,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="35"/>
+        <location filename="../assets/Login.qml" line="31"/>
         <source>登录失败</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="84"/>
+        <location filename="../assets/Login.qml" line="78"/>
         <source>用户名或邮箱</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="91"/>
+        <location filename="../assets/Login.qml" line="85"/>
         <source>密码</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="108"/>
+        <location filename="../assets/Login.qml" line="102"/>
         <source>登录</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="50"/>
+        <location filename="../assets/Login.qml" line="46"/>
         <source>请输入用户名和密码</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../assets/Login.qml" line="132"/>
+        <location filename="../assets/Login.qml" line="126"/>
         <source>登录成功</source>
         <translation type="unfinished"></translation>
     </message>

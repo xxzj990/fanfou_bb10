@@ -7,7 +7,7 @@
 
 #include <QString>
 #include <QDateTime>
-#include <QDebug>
+#include <src/utils/log.h>
 #include "oauth10aservice.h"
 #include "mynetworkrequest.h"
 #include "basestringextractor.h"
@@ -99,14 +99,12 @@ QString OAuth10aService::getSignature(MyNetworkRequest request, OAuthToken token
     // Base string
     BaseStringExtractor extractor;
     QString basestring = extractor.extract(request);
-
-    qDebug() << "     Base string:" << basestring;
+    Log::d("Base string: " + basestring);
 
     // Signature string
     HMACSha1Signature signtool;
     QString result = signtool.getSignature(basestring, getApiSecret(), token.getSecret());
-
-    qDebug() << "Signature string:" << result;
+    Log::d("Signature string: " + result);
 
     return result;
 }

@@ -22,7 +22,7 @@ static const uint qt_meta_data_Fanfou[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,9 +37,10 @@ static const uint qt_meta_data_Fanfou[] = {
       61,   55,    7,    7, 0x08,
 
  // methods: signature, parameters, type, tag, flags
-      93,    7,   88,    7, 0x02,
-     103,    7,    7,    7, 0x02,
-     111,    7,    7,    7, 0x02,
+      96,    7,   91,    7, 0x02,
+     124,  106,    7,    7, 0x02,
+     147,    7,    7,    7, 0x02,
+     156,    7,    7,    7, 0x02,
 
        0        // eod
 };
@@ -47,8 +48,10 @@ static const uint qt_meta_data_Fanfou[] = {
 static const char qt_meta_stringdata_Fanfou[] = {
     "Fanfou\0\0msg\0loginSuccess(QString)\0"
     "loginFailed(QString)\0reply\0"
-    "onGetReply(QNetworkReply*)\0bool\0"
-    "isLogin()\0login()\0logout()\0"
+    "onLoginResult(QNetworkReply*)\0bool\0"
+    "isLogin()\0username,password\0"
+    "login(QString,QString)\0logout()\0"
+    "setAsLogined()\0"
 };
 
 void Fanfou::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -59,11 +62,12 @@ void Fanfou::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->loginSuccess((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->loginFailed((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->onGetReply((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 2: _t->onLoginResult((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 3: { bool _r = _t->isLogin();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 4: _t->login(); break;
+        case 4: _t->login((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 5: _t->logout(); break;
+        case 6: _t->setAsLogined(); break;
         default: ;
         }
     }
@@ -101,9 +105,9 @@ int Fanfou::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }

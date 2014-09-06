@@ -5,12 +5,11 @@
  *      Author: liulei
  */
 
-#include "Networker.h"
-
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
-#include <QDebug>
+#include <src/utils/log.h>
+#include "Networker.h"
 
 /**
  * @brief The NetWorker::Private class 内部辅助类
@@ -43,7 +42,6 @@ NetWorker *NetWorker::instance()
 NetWorker::NetWorker(QObject *parent) :
         QObject(parent), d(new NetWorker::Private(this))
 {
-//    connect(d->manager, SIGNAL(finished(QNetworkReply*), this, SLOT(finished(QNetworkReply*)));
     connect(d->manager, SIGNAL(finished(QNetworkReply*)), this, SIGNAL(finished(QNetworkReply*)));
 }
 
@@ -70,12 +68,12 @@ void NetWorker::doSend(MyNetworkRequest &request) {
         QString url = getCompleteUrl(request);
         request.setUrl(QUrl(url));
         d->manager->get(request);
-        qDebug() << "send with get";
+        Log::d("do get request");
     } else if(request.getVerb() == POST) {
         d->manager->post(request, "body");
-        qDebug() << "send with post";
+        Log::d("do post request");
     } else {
-        qDebug() << "not send with other";
+        Log::d("request type not support.type=" + request.getVerb());
     }
 }
 

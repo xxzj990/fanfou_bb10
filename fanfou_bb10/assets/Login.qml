@@ -13,8 +13,6 @@ Page {
 
     // when c++ login OK,call this method
     function loginSuccess(msg) {
-        console.log("login success result:" + msg)
-
         // Stop loading
         progressIndicator.active = false
         progressIndicator.visible = false
@@ -25,8 +23,6 @@ Page {
 
     // when c++ login failed,call this method
     function loginFailed(msg) {
-        console.log("login failed result:" + msg)
-
         // Stop loading
         progressIndicator.active = false
         progressIndicator.visible = false
@@ -51,14 +47,12 @@ Page {
             return
         }
 
-        console.log("login with username=" + nametext + ";password=" + pwdtext)
-
         // Show loading
         progressIndicator.active = true
         progressIndicator.visible = true
 
         // Login
-        _fanfou.login()
+        _fanfou.login(nametext, pwdtext)
     }
 
     Component.onCompleted: {
@@ -147,7 +141,6 @@ Page {
     paneProperties: NavigationPaneProperties {
         backButton: ActionItem {
             onTriggered: {
-                console.debug("pop Login page")
                 homePane.pop()
             }
         }
