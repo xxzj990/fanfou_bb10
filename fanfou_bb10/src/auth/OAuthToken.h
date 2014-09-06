@@ -33,6 +33,8 @@ public:
     void setRawResponse(QString rawResponse);
     QString getRawResponse();
 
+    bool isVaild();
+
 private:
     QString token;
     QString secret;

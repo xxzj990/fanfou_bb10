@@ -11,6 +11,8 @@
 #include <src/utils/log.h>
 #include <src/auth/HMACSha1Signature.h>
 #include <src/auth/OAuth10aService.h>
+#include <src/auth/TokenExtractor.h>
+#include <src/auth/OAuthToken.h>
 #include <bb/cascades/QmlDocument>
 #include <QNetworkRequest>
 #include <QByteArray>
@@ -92,17 +94,26 @@ void Fanfou::onLoginResult(QNetworkReply *reply)
 
     QString response = getResultString(reply);
 
-    Log::d("login response:" + response);
-
     if(response.isEmpty()) {
+        Log::d("empty response error");
         emit loginFailed("error");
     } else {
-        emit loginSuccess(response);
+        Log::d("login response:" + response);
 
         // 储存token
+        TokenExtractor extractor;
+        OAuthToken token = extractor.extract(response);
+        if(!token.isVaild()) {
+            Log::d("empty token error");
+            emit loginFailed("error");
+            return;
+        } else {
+            AppSettings::saveToken(token);
+        }
 
         // 获取用户信息
 
+        emit loginSuccess(response);
     }
 
 }

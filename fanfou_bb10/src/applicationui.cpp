@@ -18,6 +18,8 @@
 #include "utils/log.h"
 #include "utils/AppSettings.h"
 #include "fanfou/Fanfou.h"
+#include <src/auth/tokenextractor.h>
+#include <src/auth/oauthtoken.h>
 
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
@@ -50,7 +52,6 @@ ApplicationUI::ApplicationUI() :
 
     // Exposing C++ objects to QML
     Fanfou *fanfou = new Fanfou(this);
-    fanfou->logout();
     qml->setContextProperty("_fanfou", fanfou);
 
     // Create root object for the UI

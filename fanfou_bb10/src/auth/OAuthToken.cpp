@@ -59,3 +59,11 @@ QString OAuthToken::getRawResponse() {
     return rawResponse;
 }
 
+bool OAuthToken::isVaild() {
+    if(token.isEmpty() || secret.isEmpty()) {
+        return false;
+    }
+
+    return true;
+}
+

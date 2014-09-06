@@ -9,6 +9,7 @@
 #define APPSETTINGS_H_
 
 #include <QObject>
+#include <src/auth/oauthtoken.h>
 
 class AppSettings : public QObject
 {
@@ -23,6 +24,9 @@ public:
     static bool isLogined();
     static void setAsLogined();
     static void removeLogin();
+
+    static void saveToken(OAuthToken token);
+    static OAuthToken getToken();
 };
 
 #endif /* APPSETTINGS_H_ */

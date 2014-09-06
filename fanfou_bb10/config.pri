@@ -84,6 +84,7 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/auth/OAuth10aService.cpp) \
         $$quote($$BASEDIR/src/auth/OAuthToken.cpp) \
         $$quote($$BASEDIR/src/auth/Parameter.cpp) \
+        $$quote($$BASEDIR/src/auth/TokenExtractor.cpp) \
         $$quote($$BASEDIR/src/fanfou/Fanfou.cpp) \
         $$quote($$BASEDIR/src/main.cpp) \
         $$quote($$BASEDIR/src/model/timeline.cpp) \
@@ -101,6 +102,7 @@ config_pri_source_group1 {
         $$quote($$BASEDIR/src/auth/OAuth10aService.h) \
         $$quote($$BASEDIR/src/auth/OAuthToken.h) \
         $$quote($$BASEDIR/src/auth/Parameter.h) \
+        $$quote($$BASEDIR/src/auth/TokenExtractor.h) \
         $$quote($$BASEDIR/src/fanfou/Fanfou.h) \
         $$quote($$BASEDIR/src/model/timeline.h) \
         $$quote($$BASEDIR/src/utils/AppSettings.h) \

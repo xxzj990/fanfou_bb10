@@ -8,6 +8,8 @@
 #include "AppSettings.h"
 #include "const.h"
 
+#include <src/auth/oauthtoken.h>
+#include <src/auth/oauth10aservice.h>
 #include <QString>
 #include <QSettings>
 
@@ -54,7 +56,7 @@ bool AppSettings::getBool(QString key)
 }
 
 bool AppSettings::isLogined() {
-    return getBool("isLogined");
+    return getToken().isVaild();
 }
 
 void AppSettings::setAsLogined() {
@@ -63,4 +65,18 @@ void AppSettings::setAsLogined() {
 
 void AppSettings::removeLogin() {
     saveBool("isLogined", false);
+}
+
+void AppSettings::saveToken(OAuthToken token) {
+    save(TOKEN, token.getToken());
+    save(TOKEN_SECRET, token.getSecret());
+    save("token_json", token.getRawResponse());
+}
+
+OAuthToken AppSettings::getToken() {
+    OAuthToken token;
+    token.setToken(get(TOKEN));
+    token.setSecret(get(TOKEN_SECRET));
+    token.setRawResponse(get("token_json"));
+    return token;
 }
