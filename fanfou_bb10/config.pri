@@ -77,21 +77,33 @@ config_pri_assets {
 config_pri_source_group1 {
     SOURCES += \
         $$quote($$BASEDIR/src/applicationui.cpp) \
+        $$quote($$BASEDIR/src/auth/BaseStringExtractor.cpp) \
+        $$quote($$BASEDIR/src/auth/HMACSha1Signature.cpp) \
+        $$quote($$BASEDIR/src/auth/HeaderExtractor.cpp) \
+        $$quote($$BASEDIR/src/auth/MyNetworkRequest.cpp) \
+        $$quote($$BASEDIR/src/auth/OAuth10aService.cpp) \
+        $$quote($$BASEDIR/src/auth/OAuthToken.cpp) \
+        $$quote($$BASEDIR/src/auth/Parameter.cpp) \
         $$quote($$BASEDIR/src/fanfou/Fanfou.cpp) \
         $$quote($$BASEDIR/src/main.cpp) \
         $$quote($$BASEDIR/src/model/timeline.cpp) \
         $$quote($$BASEDIR/src/utils/AppSettings.cpp) \
-        $$quote($$BASEDIR/src/utils/HMACSha1Signature.cpp) \
         $$quote($$BASEDIR/src/utils/Networker.cpp) \
         $$quote($$BASEDIR/src/utils/const.cpp) \
         $$quote($$BASEDIR/src/utils/log.cpp)
 
     HEADERS += \
         $$quote($$BASEDIR/src/applicationui.hpp) \
+        $$quote($$BASEDIR/src/auth/BaseStringExtractor.h) \
+        $$quote($$BASEDIR/src/auth/HMACSha1Signature.h) \
+        $$quote($$BASEDIR/src/auth/HeaderExtractor.h) \
+        $$quote($$BASEDIR/src/auth/MyNetworkRequest.h) \
+        $$quote($$BASEDIR/src/auth/OAuth10aService.h) \
+        $$quote($$BASEDIR/src/auth/OAuthToken.h) \
+        $$quote($$BASEDIR/src/auth/Parameter.h) \
         $$quote($$BASEDIR/src/fanfou/Fanfou.h) \
         $$quote($$BASEDIR/src/model/timeline.h) \
         $$quote($$BASEDIR/src/utils/AppSettings.h) \
-        $$quote($$BASEDIR/src/utils/HMACSha1Signature.h) \
         $$quote($$BASEDIR/src/utils/Networker.h) \
         $$quote($$BASEDIR/src/utils/const.h) \
         $$quote($$BASEDIR/src/utils/log.h)
@@ -108,6 +120,11 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../src/*.cc) \
         $$quote($$BASEDIR/../src/*.cpp) \
         $$quote($$BASEDIR/../src/*.cxx) \
+        $$quote($$BASEDIR/../src/auth/*.c) \
+        $$quote($$BASEDIR/../src/auth/*.c++) \
+        $$quote($$BASEDIR/../src/auth/*.cc) \
+        $$quote($$BASEDIR/../src/auth/*.cpp) \
+        $$quote($$BASEDIR/../src/auth/*.cxx) \
         $$quote($$BASEDIR/../src/fanfou/*.c) \
         $$quote($$BASEDIR/../src/fanfou/*.c++) \
         $$quote($$BASEDIR/../src/fanfou/*.cc) \

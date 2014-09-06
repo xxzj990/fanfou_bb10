@@ -9,7 +9,8 @@
 
 #include <src/utils/AppSettings.h>
 #include <src/utils/log.h>
-#include <src/utils/HMACSha1Signature.h>
+#include <src/auth/HMACSha1Signature.h>
+#include <src/auth/OAuth10aService.h>
 #include <bb/cascades/QmlDocument>
 #include <QNetworkRequest>
 #include <QByteArray>
@@ -39,12 +40,10 @@ void Fanfou::login()
 {
     AppSettings::setAsLogined();
 
-    HMACSha1Signature signer;
-    QString result = signer.getSignature("http://api.fanfou.com", "dscadcadacsdcadscasd", "vasdrafaw3easddscasdc");
+    OAuth10aService service;
+    MyNetworkRequest request = service.getTokenRequest("xxzj990@gmail.com", "wersdf");
 
-    qDebug() << result;
-
-    netWorker->get("http://api.fanfou.com/statuses/public_timeline.json");
+    netWorker->doSend(request);
 }
 
 void Fanfou::logout()

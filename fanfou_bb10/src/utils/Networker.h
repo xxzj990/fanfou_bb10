@@ -9,6 +9,7 @@
 #define NETWORKER_H
 
 #include <QObject>
+#include <src/auth/MyNetworkRequest.h>
 
 class QNetworkReply;
 
@@ -24,6 +25,10 @@ public:
      * @param url 请求地址
      */
      Q_INVOKABLE void get(const QString &url);
+
+     Q_INVOKABLE void doSend(MyNetworkRequest &request);
+
+     QString getCompleteUrl(MyNetworkRequest &request);
 
 Q_SIGNALS:
     /**

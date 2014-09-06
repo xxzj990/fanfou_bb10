@@ -22,7 +22,7 @@ static const uint qt_meta_data_NetWorker[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,13 +34,15 @@ static const uint qt_meta_data_NetWorker[] = {
 
  // methods: signature, parameters, type, tag, flags
       46,   42,   10,   10, 0x02,
+      67,   59,   10,   10, 0x02,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_NetWorker[] = {
     "NetWorker\0\0reply\0finished(QNetworkReply*)\0"
-    "url\0get(QString)\0"
+    "url\0get(QString)\0request\0"
+    "doSend(MyNetworkRequest&)\0"
 };
 
 void NetWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -51,6 +53,7 @@ void NetWorker::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         switch (_id) {
         case 0: _t->finished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
         case 1: _t->get((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 2: _t->doSend((*reinterpret_cast< MyNetworkRequest(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -88,9 +91,9 @@ int NetWorker::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
